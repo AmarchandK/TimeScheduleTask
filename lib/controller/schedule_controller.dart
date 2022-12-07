@@ -25,8 +25,12 @@ class SchduleController extends GetxController {
     availableTimeMap.forEach((key, value) {
       String values = '';
       if (value.isNotEmpty) {
-        for (int i = 0; i < value.length; i++) {
-          values += '${value[i]}, ';
+        if (value.length == 3) {
+          values += 'Whole day, ';
+        } else {
+          for (int i = 0; i < value.length; i++) {
+            values += '${value[i]}, ';
+          }
         }
         tempList.add("$key: $values");
       }
@@ -68,9 +72,9 @@ class SchduleController extends GetxController {
     }
   }
 
-  void _listCheck(String time, int i) {
-    availableTimeMap[days[i]]!.contains(time)
-        ? availableTimeMap[days[i]]!.remove(time)
-        : availableTimeMap[days[i]]!.add(time);
+  void _listCheck(String time, int index) {
+    availableTimeMap[days[index]]!.contains(time)
+        ? availableTimeMap[days[index]]!.remove(time)
+        : availableTimeMap[days[index]]!.add(time);
   }
 }
